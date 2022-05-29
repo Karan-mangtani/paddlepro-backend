@@ -16,8 +16,8 @@ try {
   console.log("Error: " + error);
 }
 
-const port = 9000;
+const port = process.env.PORT || 9000;
 app.use("/contact-us", contactUsrouter);
 app.listen(port, () => {
-  console.log("Server started");
+  console.log("Server started", port);
 });
