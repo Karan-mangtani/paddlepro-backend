@@ -1,4 +1,18 @@
+const Joi = require("joi");
 const ContactUs = require("../models/contactUs");
+
+function validateContactus(user) {
+  const schema = Joi.object({
+    firstName: Joi.string().min(5).max(50).required(),
+    lastName: Joi.string().min(5).max(50).required(),
+    phoneNo: Joi.number().required(),
+    email: Joi.string().min(5).max(255).required().email(),
+    country: Joi.string().min(1).max(255).required(),
+    dob: Joi.string().required()
+  })
+  return schema.validate(user)
+
+}
 
 const getContactUsData = async (req, res) => {
   try {
@@ -21,12 +35,13 @@ const getspecContactUs = async (req, res) => {
 
 const createContactUs = async (req, res) => {
   console.log(req.body);
-  const { firstName, lastName, phoneNo, email, country } = req.body;
+  const { firstName, lastName, phoneNo, email, country, dob } = req.body;
 
-  // const { error } = validate(req.body);
-  // if (error) {
-  //   return res.status(400).send(error.details[0].message);
-  // }
+  const { error } = validateContactus(req.body);
+  if (error) {
+    console.log("err",error)
+    return res.status(400).send(error.message);
+  }
 
   let contactUs = new ContactUs({
     firstName,
@@ -34,6 +49,7 @@ const createContactUs = async (req, res) => {
     phoneNo,
     email,
     country,
+    dob,
   });
   try {
     await contactUs.save();

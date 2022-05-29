@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const contactUsrouter = require("./routes/contactUs");
 const app = express();
 
-const url = "mongodb://localhost:27017";
+const url = "mongodb+srv://root:root@cluster0.jigja.mongodb.net/paddlepro?retryWrites=true&w=majority";
 mongoose.connect(url, { useNewUrlParser: true });
 const con = mongoose.connection;
 app.use(bodyParser.json());
@@ -17,7 +17,7 @@ try {
 }
 
 const port = 9000;
-app.use("/contactUs", contactUsrouter);
+app.use("/contact-us", contactUsrouter);
 app.listen(port, () => {
   console.log("Server started");
 });
