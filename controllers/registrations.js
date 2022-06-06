@@ -3,14 +3,14 @@ const Registation = require("../models/registration");
 
 function validateRegistration(user) {
     const schema = Joi.object({
-        firstName: Joi.string().min(5).max(50).required(),
-        lastName: Joi.string().min(5).max(50).required(),
+        firstName: Joi.string().min(2).max(50).required(),
+        lastName: Joi.string().min(2).max(50).required(),
         phoneNo: Joi.number().required(),
         email: Joi.string().min(5).max(255).required().email(),
         country: Joi.string().min(1).max(255).required(),
         dob: Joi.string().required(),
         gender: Joi.string().required(),
-        padelLevel: Joi.string().required(),
+        paddleLevel: Joi.any(),
         teamName: Joi.string().required()
     })
     return schema.validate(user)
@@ -28,7 +28,7 @@ const getRegistrationsData = async (req, res) => {
 
 const registerNewUser = async (req, res) => {
     console.log(req.body);
-  const { firstName, lastName, phoneNo, email, country, dob, gender, padelLevel, teamName } = req.body;
+  const { firstName, lastName, phoneNo, email, country, dob, gender, paddleLevel, teamName } = req.body;
 
   const { error } = validateRegistration(req.body);
   if (error) {
@@ -44,7 +44,7 @@ const registerNewUser = async (req, res) => {
     country,
     dob,
     gender,
-    padelLevel, 
+    paddleLevel, 
     teamName
   });
   try {
