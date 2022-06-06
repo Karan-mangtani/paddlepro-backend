@@ -43,7 +43,7 @@ const registrationsSchema = mongoose.Schema({
       minlength: 4,
       maxlength10: 10
   },
-  padelLevel: {
+  paddleLevel: {
       type: String
   },
   teamName: {
