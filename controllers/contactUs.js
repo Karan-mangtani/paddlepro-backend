@@ -1,10 +1,11 @@
 const Joi = require("joi");
 const ContactUs = require("../models/contactUs");
+const { sendMail } = require("../utils/mailer");
 
 function validateContactus(user) {
   const schema = Joi.object({
-    firstName: Joi.string().min(5).max(50).required(),
-    lastName: Joi.string().min(5).max(50).required(),
+    firstName: Joi.string().min(3).max(50).required(),
+    lastName: Joi.string().min(3).max(50).required(),
     phoneNo: Joi.number().required(),
     email: Joi.string().min(5).max(255).required().email(),
     country: Joi.string().min(1).max(255).required(),
@@ -12,6 +13,20 @@ function validateContactus(user) {
   })
   return schema.validate(user)
 
+}
+
+const sendEmail = (params) => {
+  const mailData = {
+    from: 'connectpaddlepro@gmail.com',  // sender address
+    to: params.email,   // list of receivers
+    subject: 'PaddlePro connect',
+    text: 'That was easy!',
+    html: `Hey <b> ${params.firstName } ${params.lastName}</b><br/><br/>
+            <p>Our Team will get back yo you soon</p>
+            <br/>  <br/>  <br/> 
+            Thanks,<br/>PaddlePro`,
+  };
+  sendMail(mailData);
 }
 
 const getContactUsData = async (req, res) => {
@@ -53,6 +68,7 @@ const createContactUs = async (req, res) => {
   });
   try {
     await contactUs.save();
+    sendEmail({email, firstName, lastName});
     res.status(201).json(contactUs);
   } catch (error) {
     res.status(400).json({ message: error.message });
