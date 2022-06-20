@@ -9,7 +9,8 @@ function validateContactus(user) {
     phoneNo: Joi.number().required(),
     email: Joi.string().min(5).max(255).required().email(),
     country: Joi.string().min(1).max(255).required(),
-    dob: Joi.string().required()
+    dob: Joi.string().required(),
+    inquire: Joi.string().default("")
   })
   return schema.validate(user)
 
@@ -20,11 +21,27 @@ const sendEmail = (params) => {
     from: 'connectpaddlepro@gmail.com',  // sender address
     to: params.email,   // list of receivers
     subject: 'PaddlePro connect',
-    text: 'That was easy!',
-    html: `Hey <b> ${params.firstName } ${params.lastName}</b><br/><br/>
+    text: 'Email From PaddlePro',
+    html: `Hey <b> ${params.firstName } ${params.lastName}</b><br/>
             <p>Our Team will get back yo you soon</p>
             <br/>  <br/>  <br/> 
             Thanks,<br/>PaddlePro`,
+  };
+  sendMail(mailData);
+}
+
+const sendEmailToCompany = (params) => {
+  const mailData = {
+    from: 'connectpaddlepro@gmail.com',  // sender address
+    to: "Info@padelleagueuae.com",   // list of receivers
+    subject: 'PaddlePro: Contact Us',
+    text: 'Email From PaddlePro',
+    html: ` <b> Contact Details</b><br/><br/>
+            Name: ${params.firstName} ${params.lastName}<br/>
+            Email: ${params.email}<br/>
+            Phone: ${params.phoneNo}<br/>
+            country: ${params.country}<br/>
+`,
   };
   sendMail(mailData);
 }
@@ -50,7 +67,7 @@ const getspecContactUs = async (req, res) => {
 
 const createContactUs = async (req, res) => {
   console.log(req.body);
-  const { firstName, lastName, phoneNo, email, country, dob } = req.body;
+  const { firstName, lastName, phoneNo, email, country, dob, inquire } = req.body;
 
   const { error } = validateContactus(req.body);
   if (error) {
@@ -65,10 +82,12 @@ const createContactUs = async (req, res) => {
     email,
     country,
     dob,
+    inquire
   });
   try {
     await contactUs.save();
     sendEmail({email, firstName, lastName});
+    sendEmailToCompany(req.body);
     res.status(201).json(contactUs);
   } catch (error) {
     res.status(400).json({ message: error.message });
