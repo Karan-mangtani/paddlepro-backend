@@ -1,6 +1,7 @@
 const Joi = require("joi");
 const Registation = require("../models/registration");
 const { sendMail } = require("../utils/mailer");
+const { getHtmlTemplate } = require("../utils/mailer/template")
 
 function validateRegistration(user) {
     const schema = Joi.object({
@@ -18,16 +19,31 @@ function validateRegistration(user) {
 
 }
 
-const sendEmail = (params) => {
+const sendEmailToUser = (params) => {
   const mailData = {
     from: 'connectpaddlepro@gmail.com',  // sender address
     to: params.email,   // list of receivers
     subject: 'Welcome on PaddlePro',
-    text: 'That was easy!',
-    html: `Hey <b> ${params.firstName } ${params.lastName}</b><br/><br/>
-            <p>You have been registered under the team ${params.teamName}</p>
-            <br/>  <br/>  <br/> 
-            Thanks,<br/>PaddlePro`,
+    text: 'Email From PaddlePro',
+    html: getHtmlTemplate(params),
+  };
+  sendMail(mailData);
+}
+
+const sendEmailToCompany = (params) => {
+  const mailData = {
+    from: 'connectpaddlepro@gmail.com',  // sender address
+    to: "Info@padelleagueuae.com",   // list of receivers
+    subject: 'PaddlePro: New Regitration',
+    text: 'Email From PaddlePro',
+    html: ` <b> New User</b><br/><br/>
+            Name: ${params.firstName} ${params.lastName}<br/>
+            Email: ${params.email}<br/>
+            Phone: ${params.phoneNo}<br/>
+            Gender: ${params.gender}<br/>
+            Level: ${params.paddleLevel}<br/>
+            Team Name: ${params.teamName}<br/>
+`,
   };
   sendMail(mailData);
 }
@@ -64,7 +80,8 @@ const registerNewUser = async (req, res) => {
   });
   try {
     await newUser.save();
-    sendEmail({email, firstName, lastName, teamName})
+    sendEmailToUser({email, firstName, lastName, teamName});
+    sendEmailToCompany(req.body);
     res.status(200).json(newUser);
   } catch (error) {
     res.status(400).json({ message: error.message });
