@@ -9,7 +9,7 @@ const contactUsSchema = mongoose.Schema({
   },
   lastName: {
     type: String,
-    required: true,
+    required: false,
     minlength: 5,
     maxlength: 50,
   },
@@ -29,7 +29,7 @@ const contactUsSchema = mongoose.Schema({
   },
   country: {
     type: String,
-    required: true,
+    required: false,
   },
   registered_on: {
     type: Date,
