@@ -5,11 +5,11 @@ const { sendMail } = require("../utils/mailer");
 function validateContactus(user) {
   const schema = Joi.object({
     firstName: Joi.string().min(3).max(50).required(),
-    lastName: Joi.string().min(3).max(50).required(),
+    lastName: Joi.string().min(3).max(50).optional(),
     phoneNo: Joi.number().required(),
     email: Joi.string().min(5).max(255).required().email(),
-    country: Joi.string().min(1).max(255).required(),
-    dob: Joi.string().required(),
+    country: Joi.string().min(1).max(255).optional(),
+    dob: Joi.string().optional(),
     inquire: Joi.string().default("")
   })
   return schema.validate(user)
