@@ -4,14 +4,11 @@ const registrationsSchema = mongoose.Schema({
   firstName: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 3,
     maxlength: 50,
   },
   lastName: {
     type: String,
-    required: true,
-    minlength: 5,
-    maxlength: 50,
   },
   phoneNo: {
     type: Number,
@@ -29,7 +26,6 @@ const registrationsSchema = mongoose.Schema({
   },
   country: {
     type: String,
-    required: true,
   },
   registered_on: {
     type: Date,
@@ -47,7 +43,8 @@ const registrationsSchema = mongoose.Schema({
       type: String
   },
   teamName: {
-      type: String
+      type: String,
+      required: true
   }
 });
 
