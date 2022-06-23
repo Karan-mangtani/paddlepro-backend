@@ -18,7 +18,7 @@ function validateContactus(user) {
 
 const sendEmail = (params) => {
   const mailData = {
-    from: 'connectpaddlepro@gmail.com',  // sender address
+    from: 'Info@padelleagueuae.com',  // sender address
     to: params.email,   // list of receivers
     subject: 'PaddlePro connect',
     text: 'Email From PaddlePro',
@@ -32,7 +32,7 @@ const sendEmail = (params) => {
 
 const sendEmailToCompany = (params) => {
   const mailData = {
-    from: 'connectpaddlepro@gmail.com',  // sender address
+    from: 'Info@padelleagueuae.com',  // sender address
     to: "Info@padelleagueuae.com",   // list of receivers
     subject: 'PaddlePro: Contact Us',
     text: 'Email From PaddlePro',

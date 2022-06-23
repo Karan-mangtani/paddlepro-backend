@@ -2,10 +2,10 @@ var nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
     port: 465,               // true for 465, false for other ports
-    host: "smtp.gmail.com",
+    host: "smtpout.asia.secureserver.net",
     auth: {
-        user: 'connectpaddlepro@gmail.com',
-        pass: 'tkgaymnlklmbbhos',
+        user: 'Info@padelleagueuae.com',
+        pass: 'PadelLeagueUAE2022',
     },
     secure: true,
 });
