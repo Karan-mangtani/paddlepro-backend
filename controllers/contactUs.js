@@ -22,9 +22,9 @@ const sendEmail = (params) => {
     to: params.email,   // list of receivers
     subject: 'PaddlePro connect',
     text: 'Email From PaddlePro',
-    html: `Hey <b> ${params.firstName } ${params.lastName}</b><br/>
-            <p>Our Team will get back yo you soon</p>
-            <br/>  <br/>  <br/> 
+    html: `Hey <b> ${params.firstName } ${params.lastName || ''}</b><br/>
+            <p>Thank you for contacting Padel League UAE, Our team will be in touch very soon</p>
+            <br/>  <br/> 
             Thanks,<br/>PaddlePro`,
   };
   sendMail(mailData);
