@@ -20,7 +20,7 @@ const sendEmail = (params) => {
   const mailData = {
     from: 'Info@padelleagueuae.com',  // sender address
     to: params.email,   // list of receivers
-    subject: 'PaddlePro connect',
+    subject: 'Paddle League',
     text: 'Email From PaddlePro',
     html: `Hey <b> ${params.firstName } ${params.lastName || ''}</b><br/>
             <p>Thank you for contacting Padel League UAE, Our team will be in touch very soon</p>
@@ -34,13 +34,15 @@ const sendEmailToCompany = (params) => {
   const mailData = {
     from: 'Info@padelleagueuae.com',  // sender address
     to: "Info@padelleagueuae.com",   // list of receivers
-    subject: 'PaddlePro: Contact Us',
+    subject: 'Paddle League - New Enquiry',
     text: 'Email From PaddlePro',
-    html: ` <b> Contact Details</b><br/><br/>
-            Name: ${params.firstName} ${params.lastName}<br/>
+    html: ` Hello Admin, </br> </br>
+            A new enquiry is been posted on Paddle league website Please see the client details and enquiry text below: </br> </br>
+            <b> Contact Details</b><br/><br/>
+            Name: ${params.firstName}<br/>
             Email: ${params.email}<br/>
             Phone: ${params.phoneNo}<br/>
-            country: ${params.country}<br/>
+            Inquire text: ${params.inquire}<br/>
 `,
   };
   sendMail(mailData);
