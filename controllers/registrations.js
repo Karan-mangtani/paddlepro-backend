@@ -43,6 +43,7 @@ const sendEmailToCompany = (players) => {
     Email: ${player.email}<br/>
     Phone: ${player.phoneNo}<br/>
     Gender: ${player.gender}<br/>
+    DOB: ${player.dob || ''}<br/>
     Level: ${player.paddleLevel}<br/><br/>`;
   })
   const mailData = {
