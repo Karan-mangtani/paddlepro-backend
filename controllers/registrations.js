@@ -28,8 +28,8 @@ const sendEmailToUser = (params) => {
   const mailData = {
     from: 'Info@padelleagueuae.com',  // sender address
     to: params.email,   // list of receivers
-    subject: 'Welcome on PaddlePro',
-    text: 'Email From PaddlePro',
+    subject: 'Welcome to Paddle League',
+    text: 'Email From Paddle League',
     html: getHtmlTemplate(params),
   };
   sendMail(mailData);
@@ -48,7 +48,7 @@ const sendEmailToCompany = (players) => {
   const mailData = {
     from: 'Info@padelleagueuae.com',  // sender address
     to: "Info@padelleagueuae.com",   // list of receivers
-    subject: 'PaddlePro: New Regitration',
+    subject: 'Paddle League: New Regitration',
     text: 'Email From PaddlePro',
     html: ` <b> New Team Registered ${players[0].teamName}</b><br/><br/>
     ${teamHtml}`
