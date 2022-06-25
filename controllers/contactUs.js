@@ -37,7 +37,7 @@ const sendEmailToCompany = (params) => {
     subject: 'Paddle League - New Enquiry',
     text: 'Email From PaddlePro',
     html: ` Hello Admin, </br> </br>
-            A new enquiry is been posted on Paddle league website Please see the client details and enquiry text below: </br> </br>
+            A new enquiry is been posted on Paddle league website. Please see the client details and enquiry text below: </br> </br>
             <b> Contact Details</b><br/><br/>
             Name: ${params.firstName}<br/>
             Email: ${params.email}<br/>
