@@ -49,7 +49,7 @@ const sendEmailToCompany = (players) => {
     from: 'Info@padelleagueuae.com',  // sender address
     to: "Info@padelleagueuae.com",   // list of receivers
     subject: 'Paddle League: New Regitration',
-    text: 'Email From PaddlePro',
+    text: 'Email From Paddle League',
     html: ` <b> New Team Registered ${players[0].teamName}</b><br/><br/>
     ${teamHtml}`
   };
