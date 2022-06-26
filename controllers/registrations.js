@@ -48,7 +48,7 @@ const sendEmailToCompany = (players) => {
   const mailData = {
     from: 'Info@padelleagueuae.com',  // sender address
     to: "Info@padelleagueuae.com",   // list of receivers
-    subject: 'Padel League: New Regitration',
+    subject: 'Padel League: Regitration',
     text: 'Email From Padel League',
     html: ` <b> New Team Registered ${players[0].teamName}</b><br/><br/>
     ${teamHtml}`
