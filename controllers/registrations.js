@@ -13,6 +13,8 @@ function validateRegistration(players) {
         phoneNo: Joi.number().required(),
         email: Joi.string().min(5).max(255).required().email(),
         country: Joi.string().allow(null).allow('').optional(),
+        city: Joi.string().allow(null).allow('').optional(),
+        area: Joi.string().allow(null).allow('').optional(),
         dob: Joi.string().allow(null).allow('').optional(),
         gender: Joi.string().required(),
         paddleLevel: Joi.any(),
@@ -44,6 +46,9 @@ const sendEmailToCompany = (players) => {
     Phone: ${player.phoneNo}<br/>
     Gender: ${player.gender}<br/>
     DOB: ${player.dob || ''}<br/>
+    City: ${player.city || ''}<br/>
+    Area: ${player.area || ''}<br/>
+    Country: ${player.country || ''}<br/>
     Level: ${player.paddleLevel}<br/><br/>`;
   })
   const mailData = {

@@ -45,7 +45,13 @@ const registrationsSchema = mongoose.Schema({
   teamName: {
       type: String,
       required: true
-  }
+  },
+  city: {
+      type: String,
+  },
+  area: {
+    type: String,
+}
 });
 
 
