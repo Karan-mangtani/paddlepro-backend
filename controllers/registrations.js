@@ -18,7 +18,8 @@ function validateRegistration(players) {
         dob: Joi.string().allow(null).allow('').optional(),
         gender: Joi.string().required(),
         paddleLevel: Joi.any(),
-        teamName: Joi.string().required()
+        teamName: Joi.string().required(),
+        preferredHand: Joi.string().allow(null).allow('').optional()
       }
     )
   )
@@ -49,7 +50,8 @@ const sendEmailToCompany = (players) => {
     City: ${player.city || ''}<br/>
     Area: ${player.area || ''}<br/>
     Country: ${player.country || ''}<br/>
-    Level: ${player.paddleLevel}<br/><br/>`;
+    Level: ${player.paddleLevel}<br/>
+    Preferred: ${player.preferredHand}<br/><br/>`;
   })
   const mailData = {
     from: 'Info@padelleagueuae.com',  // sender address

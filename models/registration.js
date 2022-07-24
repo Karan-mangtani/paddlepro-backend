@@ -35,23 +35,26 @@ const registrationsSchema = mongoose.Schema({
     type: Date,
   },
   gender: {
-      type: String,
-      minlength: 4,
-      maxlength10: 10
+    type: String,
+    minlength: 4,
+    maxlength10: 10
   },
   paddleLevel: {
-      type: String
+    type: String
   },
   teamName: {
-      type: String,
-      required: true
+    type: String,
+    required: true
   },
   city: {
-      type: String,
+    type: String,
   },
   area: {
     type: String,
-}
+  },
+  preferredHand: {
+    type: String
+  }
 });
 
 
