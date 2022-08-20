@@ -16,7 +16,7 @@ function validateRegistration(players) {
         city: Joi.string().allow(null).allow('').optional(),
         area: Joi.string().allow(null).allow('').optional(),
         dob: Joi.string().allow(null).allow('').optional(),
-        gender: Joi.string().required(),
+        gender: Joi.string().allow(null).allow('').optional(),
         paddleLevel: Joi.any(),
         teamName: Joi.string().required(),
         preferredHand: Joi.string().allow(null).allow('').optional()
@@ -45,13 +45,15 @@ const sendEmailToCompany = (players) => {
     Name: ${player.firstName} ${player.lastName}<br/>
     Email: ${player.email}<br/>
     Phone: ${player.phoneNo}<br/>
-    Gender: ${player.gender}<br/>
-    DOB: ${player.dob || ''}<br/>
-    City: ${player.city || ''}<br/>
-    Area: ${player.area || ''}<br/>
-    Country: ${player.country || ''}<br/>
-    Level: ${player.paddleLevel}<br/>
-    Preferred: ${player.preferredHand}<br/><br/>`;
+    <br/>`
+    // Gender: ${player.gender}<br/>
+    // DOB: ${player.dob || ''}<br/>
+    // City: ${player.city || ''}<br/>
+    // Area: ${player.area || ''}<br/>
+    // Country: ${player.country || ''}<br/>
+    // Level: ${player.paddleLevel}<br/>
+    // Preferred: ${player.preferredHand}<br/>
+
   })
   const mailData = {
     from: 'Info@padelleagueuae.com',  // sender address
